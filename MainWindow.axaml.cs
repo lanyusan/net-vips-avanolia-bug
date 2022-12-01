@@ -105,6 +105,10 @@ namespace NetVipsAvalonia
                     var filepathJoined = filepath  + "-joined.png";
                     framesJoined.Pngsave(filepathJoined);
                     var height = generatedFrames[0].Height;
+                    var pngBuffer = framesJoined.PngsaveBuffer();
+
+                    framesJoined = NetVips.Image.NewFromBuffer(pngBuffer);
+
                     var framesWithMeta = framesJoined.Mutate(mutable =>
                     {
                         // Set the number of loops, libvips uses iterations like this:
